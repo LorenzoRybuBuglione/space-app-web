@@ -11,7 +11,7 @@ const TextInputStyled = styled.input`
   font-size: 20px;
   font-weight: 400;
   line-height: 20px;
-  width: 566;
+  width: 566px;
   height: 56px;
   padding: 12px 16px;
   border-radius: 10px;
