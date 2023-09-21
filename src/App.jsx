@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import BarraLateral from "./componentes/BarraLateral";
 import Cabecalho from "./componentes/Cabecalho";
 import EstilosGlobais from "./componentes/EstilosGlobais";
 
@@ -15,6 +16,7 @@ function App() {
   return <FundoGradiente>
     <EstilosGlobais/>
     <Cabecalho/>
+    <BarraLateral/>
   </FundoGradiente>;
 }
 
