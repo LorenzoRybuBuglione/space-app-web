@@ -4,7 +4,11 @@ import Cabecalho from "./componentes/Cabecalho";
 import Banner from "./componentes/Banner";
 import EstilosGlobais from "./componentes/EstilosGlobais";
 
-import BannerImage from "/imagens/banner.png"
+import BannerImage from "/imagens/banner.png";
+import Galeria from "./componentes/Galeria";
+
+import fotos from './fotos.json'
+import { useState } from "react";
 
 const FundoGradiente = styled.div`
   width: 100%;
@@ -15,13 +19,44 @@ const FundoGradiente = styled.div`
   }
 `;
 
-function App() {
-  return <FundoGradiente>
-    <EstilosGlobais/>
-    <Cabecalho/>
-    <BarraLateral/>
-    <Banner texto='A galeria mais completa de fotos do espaço!' backgroundImage={BannerImage}/>
-  </FundoGradiente>;
+const AppContainer = styled.div`
+  width: 1440px;
+  max-width: 100%;
+  margin: 0 auto;
+`;
+
+const MainContainer = styled.main`
+  display: flex;
+  gap: 24px;
+`;
+
+const ConteudoGaleria = styled.section`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+`;
+
+const App = () => {
+  const [fotosDaGaleria, setFotosDaGaleria] = useState(fotos);
+
+  return (
+    <FundoGradiente>
+      <EstilosGlobais />
+      <AppContainer>
+        <Cabecalho />
+        <MainContainer>
+          <BarraLateral />
+          <ConteudoGaleria>
+            <Banner
+              texto="A galeria mais completa de fotos do espaço!"
+              backgroundImage={BannerImage}
+            />
+            <Galeria fotos={fotosDaGaleria}/>
+          </ConteudoGaleria>
+        </MainContainer>
+      </AppContainer>
+    </FundoGradiente>
+  );
 }
 
 export default App;

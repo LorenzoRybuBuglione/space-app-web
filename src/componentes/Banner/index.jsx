@@ -10,6 +10,7 @@ const BannerStyled = styled.figure`
   margin: 0;
   border-radius: 20px;
   max-width: 100%;
+  background-size: cover;
 `;
 
 const TituloStyled = styled.h1`
