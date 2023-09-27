@@ -55,7 +55,9 @@ const ButtonStyled = styled.button`
   }
 `;
 
-const Imagem = ({ foto, expandida = false, aoZoomClick }) => {
+const Imagem = ({ foto, expandida = false, aoZoomClick, aoAlternarFavorito }) => {
+  const iconeFavoritoAtivo = foto.favorita ? iconeFavorito : iconeNaoFavorito
+
   return (
     <FigureStyled $expandida={expandida} id={`foto-${foto.id}`}>
       <img src={foto.path} alt={foto.alt} />
@@ -64,8 +66,8 @@ const Imagem = ({ foto, expandida = false, aoZoomClick }) => {
         <FooterStyled>
           <h4>{foto.fonte}</h4>
           <ButtonContainer>
-            <ButtonStyled>
-              <img src={iconeNaoFavorito} alt="Favorito" />
+            <ButtonStyled onClick={() => aoAlternarFavorito(foto)}>
+              <img src={iconeFavoritoAtivo} alt="Favorito" />
             </ButtonStyled>
             {!expandida && (
               <ButtonStyled

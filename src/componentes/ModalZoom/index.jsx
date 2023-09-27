@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import BotaoIcone from "../BotaoIcone";
 import Imagem from "../Galeria/Imagem";
 
 const Overlay = styled.div`
@@ -15,29 +16,31 @@ const DialogStyled = styled.dialog`
   top: 294px;
   background: transparent;
   padding: 0;
-  border:0;
+  border: 0;
   width: 1156px;
   display: flex;
   justify-content: center;
   form {
     button {
-        position: relative;
-        top: 20px;
-        right: 60px;
+      position: relative;
+      top: 20px;
+      right: 60px;
     }
   }
 `;
 
-const ModalZoom = ({ foto }) => {
+const ModalZoom = ({ foto, aoFechar, aoAlternarFavorito }) => {
   return (
     <>
       {foto && (
         <>
           <Overlay />
           <DialogStyled open={!!foto}>
-            <Imagem foto={foto} expandida={true} />
+            <Imagem foto={foto} expandida={true} aoAlternarFavorito={aoAlternarFavorito}/>
             <form method="dialog">
-              <button>OK</button>
+              <BotaoIcone onClick={aoFechar}>
+                <img src="/icones/fechar.png" />
+              </BotaoIcone>
             </form>
           </DialogStyled>
         </>
