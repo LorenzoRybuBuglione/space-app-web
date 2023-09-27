@@ -10,6 +10,7 @@ import Galeria from "./componentes/Galeria";
 import fotos from './fotos.json'
 import { useState } from "react";
 import ModalZoom from "./componentes/ModalZoom";
+import Populares from "./componentes/Galeria/Populares";
 
 const FundoGradiente = styled.div`
   width: 100%;
@@ -54,6 +55,7 @@ const App = () => {
               backgroundImage={BannerImage}
             />
             <Galeria aoFotoSelecionada={foto => setFotoSelecionada(foto)} fotos={fotosDaGaleria}/>
+            <Populares/>
           </ConteudoGaleria>
         </MainContainer>
       </AppContainer>
