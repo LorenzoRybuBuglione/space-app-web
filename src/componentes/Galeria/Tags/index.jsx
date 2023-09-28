@@ -30,14 +30,16 @@ const TagsContainer = styled.div`
   align-items: center;
 `;
 
-const Tags = () => {
+const Tags = ({ setTag }) => {
   return (
     <>
       <TagsContainer>
         <TagTitulo>Busque por tags:</TagTitulo>
 
         {tags.map((tag) => (
-          <Botao key={tag.id}>{tag.titulo}</Botao>
+          <Botao key={tag.id} onClick={() => setTag(tag.tag)}>
+            {tag.titulo}
+          </Botao>
         ))}
       </TagsContainer>
     </>

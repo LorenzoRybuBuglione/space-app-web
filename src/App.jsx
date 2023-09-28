@@ -12,6 +12,7 @@ import { useState } from "react";
 import ModalZoom from "./componentes/ModalZoom";
 import Populares from "./componentes/Galeria/Populares";
 import Rodape from "./componentes/Rodape";
+import { useEffect } from "react";
 
 const FundoGradiente = styled.div`
   width: 100%;
@@ -42,6 +43,18 @@ const ConteudoGaleria = styled.section`
 const App = () => {
   const [fotosDaGaleria, setFotosDaGaleria] = useState(fotos);
   const [fotoSelecionada, setFotoSelecionada] = useState(null);
+  const [filtro, setFiltro] = useState("");
+  const [tag, setTag] = useState(0);
+
+  useEffect(() => {
+    const fotosFiltradas = fotos.filter((foto) => {
+      const filtroPorTag = !tag || foto.tagId === tag;
+      const filtroPorTitulo =
+        !filtro || foto.titulo.toLowerCase().includes(filtro.toLowerCase());
+      return filtroPorTag && filtroPorTitulo;
+    });
+    setFotosDaGaleria(fotosFiltradas);
+  }, [filtro, tag]);
 
   const aoAlternarFavorito = (foto) => {
     if (foto.id === fotoSelecionada?.id) {
@@ -68,7 +81,7 @@ const App = () => {
     <FundoGradiente>
       <EstilosGlobais />
       <AppContainer>
-        <Cabecalho />
+        <Cabecalho filtro={filtro} setFiltro={setFiltro} />
         <MainContainer>
           <BarraLateral />
           <ConteudoGaleria>
@@ -80,12 +93,13 @@ const App = () => {
               aoFotoSelecionada={(foto) => setFotoSelecionada(foto)}
               aoAlternarFavorito={aoAlternarFavorito}
               fotos={fotosDaGaleria}
+              setTag={setTag}
             />
             <Populares />
           </ConteudoGaleria>
         </MainContainer>
       </AppContainer>
-      <Rodape/>
+      <Rodape />
       <ModalZoom
         foto={fotoSelecionada}
         aoFechar={() => setFotoSelecionada(null)}
